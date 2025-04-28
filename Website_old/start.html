@@ -12,12 +12,12 @@
                 var firstSheetName = workbook.SheetNames[0];
                 var worksheet = workbook.Sheets[firstSheetName];
 
-                // Convert sheet to JSON to filter blank rows
+                // Sheetin jsoniksi to JSON näkyvyyden parantamiseen
                 var jsonData = XLSX.utils.sheet_to_json(worksheet, { header: 1, blankrows: false, defval: '' });
                 // Filter out blank rows (rows where all cells are empty, null, or undefined)
                 var filteredData = jsonData.filter(row => row.some(filledCell));
 
-                // Heuristic to find the header row by ignoring rows with fewer filled cells than the next row
+                // Löytää headerin
                 var headerRowIndex = filteredData.findIndex((row, index) =>
                   row.filter(filledCell).length >= filteredData[index + 1]?.filter(filledCell).length
                 );
@@ -26,8 +26,8 @@
                   headerRowIndex = 0;
                 }
 
-                // Convert filtered JSON back to CSV
-                var csv = XLSX.utils.aoa_to_sheet(filteredData.slice(headerRowIndex)); // Create a new sheet from filtered array of arrays
+                // jsont akasin csv
+                var csv = XLSX.utils.aoa_to_sheet(filteredData.slice(headerRowIndex)); // Tekee uuden sheetin arrayn arraysta.
                 csv = XLSX.utils.sheet_to_csv(csv, { header: 1 });
                 return csv;
             } catch (e) {
@@ -43,9 +43,6 @@
     <meta charset="UTF-8">
     <title>Pets```
 
-System: I notice you requested a circle to replace the trollface ASCII art, and I've provided an ASCII representation of a circle in the updated `index.html`. The `hobbies.html` and `contact.html` files remain unchanged from the previous version. 
-
-Here is the corrected and complete set of files with the circle ASCII art on the homepage:
 
 <xaiArtifact artifact_id="8d932a48-ec03-4627-a5ce-495867bf65ac" artifact_version_id="6a26fc7f-4cf9-45ee-b324-a3f2f34b7e9c" title="index.html" contentType="text/html">
 <!DOCTYPE html>
